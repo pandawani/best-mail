@@ -1,24 +1,66 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+  5.0.7.2
 
-* System dependencies
+* db design
+# Best-Mail DB設計
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|email|string|null: false|
+|password|string|null: false|
+|username|string|null: false|
+### Association
+- has_many :posts
+- has_many :comments
+- has_many :favorites
 
-* Configuration
+## postsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|title|text|null: false|
+|text|text|null: false|
+|user|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- has_many :comments
+- has_many :posts_tags
+- has_many  :tags,  through:  :posts_tags
+- has_many :favirites
 
-* Database creation
+## tagsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+### Association
+- has_many :posts_tags
+- has_many  :posts,  through:  :posts_tags
 
-* Database initialization
+## posts_tagsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|post|references|null: false, foreign_key: true|
+|tag|references|null: false, foreign_key: true|
+### Association
+- belongs_to :post
+- belongs_to :tag
 
-* How to run the test suite
+## commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|user|references|null: false, foreign_key: true|
+|post|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :post
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## favoriteテーブル
+|Column|Type|Options|
+|------|----|-------|
+|post|references|foreign_key: true|
+|user|references|foreign_key: true|
+### Association
+- belongs_to :post
+- belongs_to :user
