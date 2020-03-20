@@ -3,7 +3,6 @@
 * Ruby version
   5.0.7.2
 
-* db design
 # Best-Mail DB設計
 ## usersテーブル
 |Column|Type|Options|
