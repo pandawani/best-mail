@@ -6,5 +6,49 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag('favicon.ico')
   %body
+    .header
+      .header__bar.row
+        .col-2.item
+          .item__icon.pt-3.pl-3
+            =link_to "/", class:"item__name " do
+              %img{alt:"サイトのロゴ", src:"assets/Best Mail.png", width:"75px",height:"75px"}
+
+        .col-4.item
+          .item__form.w-100.bg-secondary
+            %input{type:"text",class:"form-control h-75 item__form_input"}
+            %button.submit-btn.btn.btn-secondary
+              %i{class:"fa fa-search"}
+
+          
+
+        .col-2.item
+          .item__favorite.btn.btn-primary
+            %i.fa.fa-bookmark.item__favorite_icon
+            %p.item__favorite_title
+              My favorite
+            
+        .col-2.item
+          .item__post.btn.btn-primary
+            %i.fa.fa-edit.item__post_icon
+            %p.item__post_title
+              Post mail
+
+
+        .col-2.item__user
+          .user__name
+            %h
+              panda
+              
+
+          .user__edit
+            =link_to "/", class:"user__edit-icon" do
+              %i.fas.fa-cog
+        
     = yield
+
+    -# .footer
+    -#   %p.footer__content
+    -#     (c)bestmail.com
+
